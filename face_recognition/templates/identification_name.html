@@ -1,0 +1,566 @@
+<!DOCTYPE html><html class="menu">
+<html>
+
+<head>
+
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="google" value="notranslate"/>
+<!-- <link rel="stylesheet" type="text/css" href="/home/student/Desktop/meet stuff/meet folder/final_css_pro/web/css/button.css">
+<link rel="stylesheet" type="text/css" href="/home/student/Desktop/meet stuff/meet folder/final_css_pro/web/css/ver.css">
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+ -->
+
+
+
+
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="google" value="notranslate"/>
+
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<!-- 
+<link rel="stylesheet" type="text/css" href="/home/student/Desktop/meet stuff/meet folder/final_css_pro/web/css/ver.css"> -->
+<link rel="stylesheet" type="text/css" href="/home/student/Desktop/meet stuff/meet folder/final_css_pro/web/static/css/ver.css">
+
+
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/v.css')}}" />
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/shine.css')}}" />
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/search.css')}}" />
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/ed.css')}}" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/rate.css')}}" />
+ 
+
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}" />
+<style type="text/css">
+.wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.link_wrapper{
+  position: relative;
+
+}
+
+.a{
+  display: block;
+  width: 230px;
+  height: 42px;
+  line-height: 45px;
+  font-weight: bold;
+  text-decoration: none;
+  background: #232323;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid #00004d;
+  transition: all .35s;
+  font-size: 18px;
+
+
+}
+
+#myProgress {
+  width: 300px;
+  background-color: white;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #00B6B3;
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+.a:hover{
+  width: 250px;
+  border: 3px solid #00B6B3;
+  background: white;
+  color: #000;
+  font-size: 14px;
+  top: 50%;
+  line-height: 46px;
+}
+
+.draw {
+  -webkit-transition: color 0.25s;
+  transition: color 0.25s;
+}
+.draw::before, .draw::after {
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+.draw::before {
+  top: 0;
+  left: 0;
+}
+.draw::after {
+  bottom: 0;
+  right: 0;
+}
+.draw:hover {
+  color: #66d9ff;
+}
+.draw:hover::before, .draw:hover::after {
+  width: 100%;
+  height: 100%;
+}
+.draw:hover::before {
+  border-top-color: #66d9ff;
+  border-right-color: #66d9ff;
+  -webkit-transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+.draw:hover::after {
+  border-bottom-color: #66d9ff;
+  border-left-color: #66d9ff;
+  -webkit-transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+}
+
+
+
+.p {
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  margin: 1em;
+  padding: 1em 2em;
+  box-shadow: inset 0 0 0 2px #262626;
+  color: #262626;
+  font-size: inherit;
+  font-weight: 700;
+  position: relative;
+  vertical-align: middle;
+}
+.p::before, .p::after {
+  box-sizing: inherit;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/*
+.afa {
+  color: #fff;
+  font-size: 10vw;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  display: inline-block;
+  position: relative;
+  font-family: 'Merriweather', serif;
+  -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+  -webkit-mask-size: 200%;
+  animation: shine 2s linear infinite;
+}*/
+
+@keyframes shine {
+  from { -webkit-mask-position: 150%; }
+  to { -webkit-mask-position: -50%; }
+}
+
+
+.button_mm {
+  width: 200px;
+  height: 200px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+
+  }
+
+button_mm::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0,255,203,.64);
+  
+
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button_mm:hover, .button_mm:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+button_mm:hover::before, button_mm:focus::before {
+  opacity: 1;
+}
+
+p::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top:57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+p:hover::after, p:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+
+  .moin_sr {
+    transition: all 1s;
+          padding:10px;
+          width: 150px;
+          background-color:#00B6B3;
+          color: #FFFFFF;
+          border: 0px;
+          cursor:pointer;
+          border-radius: 5px;
+      }
+
+  .moin_sr:hover {
+          transition: all 1s;
+          width: 200px;
+          border: 20px #333333;
+          padding:10px;
+          font-size: 20px;
+          background-color: white;
+          color: #333333;
+          border: 0px;
+          cursor:pointer;
+          border-radius: 5px;
+          border: 4px solid #333333;
+      }
+.moin_sr:hover::after{
+transition: all 1s;
+
+}
+</style> 
+
+
+
+
+<style type="text/css">
+  
+</style>
+
+
+
+
+</head>
+<body>
+
+<br>
+<div align="center">
+<h1 class="ml5">
+  <span class="text-wrapper">
+    <span class="line line1"></span>
+    <span class="letters letters-left">Find anyone</span>
+
+    <span class="letters letters-right">By name/picture</span>
+    <span class="line line2"></span>
+  </span>
+</h1>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+
+<script type="text/javascript">
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml5 .line',
+    opacity: [0.5,1],
+    scaleX: [0, 1],
+    easing: "easeInOutExpo",
+    duration: 900
+  }).add({
+    targets: '.ml5 .line',
+    duration: 900,
+    easing: "easeOutExpo",
+    translateY: (el, i) => (-0.625 + 0.625*2*i) + "em"
+  }).add({
+    targets: '.ml5 .ampersand',
+    opacity: [0,1],
+    scaleY: [0.5, 1],
+    easing: "easeOutExpo",
+    duration: 900,
+    offset: '-=600'
+  }).add({
+    targets: '.ml5 .letters-left',
+    opacity: [0,1],
+    translateX: ["0.5em", 0],
+    easing: "easeOutExpo",
+    duration: 800,
+    offset: '-=300'
+  }).add({
+    targets: '.ml5 .letters-right',
+    opacity: [0,1],
+    translateX: ["-0.5em", 0],
+    easing: "easeOutExpo",
+    duration: 700,
+    offset: '-=600'
+  }).add({
+    targets: '.ml5',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+</script>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+
+
+
+
+
+
+<div class="row">
+<div class="col-1">
+<nav class="main-menu" style="position: fixed; background-color: white">
+
+
+  
+
+<div class="settings">
+<div class="scrollbar" id="style-1">
+      
+<ul>
+  
+ 
+<li>                                   
+<a href="/">
+<i class="fa fa-home fa-lg"></i>
+<span class="nav-text" >Home</span>
+</a>
+</li>   
+   
+<li>                                 
+<a href="log.html">
+<i class="fa fa-user fa-lg"></i>
+<span class="nav-text">Login</span>
+</a>
+</li>   
+
+    
+<li>        
+                        <!-- this part is for lara cause she said so i have nothing to do here -->
+<a href="https://www.eyecontrol.co.il/contact"> 
+<i class="fa fa-envelope-o fa-lg"></i>
+<span class="nav-text">Contact</span>
+</a>
+</li>   
+  
+
+<li>
+<a href="https://news.google.com/search?q=facial%20recognition&hl=en-IL&gl=IL&ceid=IL%3Aen">
+<i class="fa fa-clock-o fa-lg"></i>
+<span class="nav-text">News</span>
+</a>
+</li>
+  
+<li>
+<a href = "/Learn.html">
+<i class="fa fa-desktop fa-lg"></i>
+<span class="nav-text">Technology</span>
+</a>
+</li>
+
+
+
+<li>
+<a href="https://www.google.com/search?q=facial+recognition+animated&sxsrf=ALeKk02_QFZlamwxIaAQkdbvejV3Ij961w:1603667767708&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiRvob979DsAhVP_qQKHaORCGwQ_AUoAXoECAYQAw&biw=1600&bih=789">
+<i class="fa fa-picture-o fa-lg"></i>
+<span class="nav-text">Art & Design</span>
+</a>
+</li>
+
+<li>
+<a href="https://www.technologyreview.com/2001/11/01/235451/face-recognition/">
+<i class="fa fa-align-left fa-lg"></i>
+<span class="nav-text">Magazines
+</span>
+</a>
+</li>
+  
+
+  
+</ul>
+
+  
+<li>
+                                   
+<a href="/about.html">
+<i class="fa fa-question-circle fa-lg"></i>
+<span class="nav-text">about me</span>
+</a>
+</li>   
+    
+  
+
+</ul>
+        </nav>
+
+      </div>
+
+    </div>
+
+  </nav>
+<b style="position: ">
+</div>
+       
+        </div>
+
+
+    
+<br>
+<br>
+<br>
+<center>
+<form method="post" enctype="multipart/form-data">
+  
+     <center>
+     <br>
+     <br>
+<input name="name" type="text" class="a" class="wrapper" class="a"  class="link_wrapper" style="font: 20px; border-color: #333333; z-index: -1; width: 300px" class="letters-left" placeholder="YOUR NAME" required></input>
+</center>
+<br>
+<p></p>
+<br>
+<br>
+<input type="submit"  class="button_mm" name="submit" value="Search!" onclick="snacksss()">
+</center>
+
+<!-- <p>
+</p> -->
+
+<script>
+var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+</script>
+
+ <script>
+function snacksss() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+  <div id="snackbar">searching...</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+
+
+
+
+#box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:  80px;
+  height: 30px;
+  color: white;
+  font-family: 'Raleway';
+  font-size: 14px;
+}
+
+
+.gradient-border {
+  --borderWidth: 3px;
+  background: #1D1F20;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #49c3f3, #fb411b, #ef4e7b, #0a2dd9, #5073b8, #1098ad, #07b39b, #6fba82);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+
+
+.wrapper2{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.link_wrapper2{
+  position: relative;
+}
+
+.a2{
+  display: block;
+  width: 100px;
+  height: 50px;
+  line-height: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  background: #333;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 3px solid #333;
+  transition: all .35s;
+
+}
+
+.a2:hover{
+  width: 200px;
+  border: 3px ;
+  background: transparent;
+  color: #ff0000;
+}
+
+
