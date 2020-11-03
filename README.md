@@ -1,4 +1,4 @@
-this is my new facial recognition based project which was made with python and javascript and was deployed to a local HTML page,a new version will be uploaded on the 5th of november 2020, and I'll deploy the website to heroku so that you won't need to download the website and the libraries I'm using .
+#this is my new facial recognition based project which was made with python and javascript and was deployed to a local HTML page,a new version will be uploaded on the 5th of november 2020, and I'll deploy the website to heroku so that you won't need to download the website and the libraries I'm using .
 If you want to use the website locally, you'll have to downlload some libraries like flask and SQLalchemy and of course have python on your computer.
 How to use:
 Install all the libraries which are written in the requirement file, an option to do this is: pip freeze > requirements. txt
