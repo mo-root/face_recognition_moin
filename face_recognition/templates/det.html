@@ -65,7 +65,6 @@
   border: 2px solid #00004d;
   transition: all .35s;
   font-size: 18px;
-  border-color: #00B6B3;
 
 
 }
@@ -126,7 +125,6 @@
 .a:hover{
   width: 250px;
   border: 3px solid #00B6B3;
-  border-color: #00B6B3;
   background: white;
   color: #000;
   font-size: 14px;
@@ -327,50 +325,6 @@ p:hover::after, p:focus::after {
 transition: all 1s;
 
 }
-
-
-
-
-.flip-card {
-  background-color: transparent;
-  width: 200px;
-  height: 200px;
-  perspective: 1000px;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  text-align: center;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.flip-card-front {
-  background-color: transparent;
-  color: black;
-}
-
-.flip-card-back {
-  background-color: transparent;
-  color: black;
-  transform: rotateY(180deg);
-  align-items: center;
-}
 </style> 
 
 
@@ -391,9 +345,9 @@ transition: all 1s;
 <h1 class="ml5">
   <span class="text-wrapper">
     <span class="line line1"></span>
-    <span class="letters letters-left">This is</span>
+    <span class="letters letters-left">Upload ERORRRRRRRRRRRRRRRRR</span>
 
-    <span class="letters letters-right">{{face.name}}</span>
+    <span class="letters letters-right">Beautiful picture📷📷</span>
     <span class="line line2"></span>
   </span>
 </h1>
@@ -408,7 +362,7 @@ anime.timeline({loop: true})
     opacity: [0.5,1],
     scaleX: [0, 1],
     easing: "easeInOutExpo",
-    duration: 1000
+    duration: 900
   }).add({
     targets: '.ml5 .line',
     duration: 900,
@@ -426,21 +380,21 @@ anime.timeline({loop: true})
     opacity: [0,1],
     translateX: ["0.5em", 0],
     easing: "easeOutExpo",
-    duration: 1200,
+    duration: 800,
     offset: '-=300'
   }).add({
     targets: '.ml5 .letters-right',
     opacity: [0,1],
     translateX: ["-0.5em", 0],
     easing: "easeOutExpo",
-    duration: 1200,
+    duration: 700,
     offset: '-=600'
   }).add({
     targets: '.ml5',
     opacity: 0,
     duration: 1000,
     easing: "easeOutExpo",
-    delay: 10000
+    delay: 1000
   });
 </script>
 
@@ -468,7 +422,7 @@ anime.timeline({loop: true})
       
 <ul>
   
- <li>                                   
+<li>                                   
 <a href="/">
 <i class="fa fa-home fa-lg"></i>
 <span class="nav-text" >Home</span>
@@ -548,28 +502,113 @@ anime.timeline({loop: true})
 </div>
        
         </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<center>
-<b class="a" style="border-color: white; width: 100%">posted by: {{face.name2}}</b><br>
-<br>
-<div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-<img width="200" style="border-radius: 5px; " src="static/faces/{{face.image}}" alt="">
-<img width="200" style="border-radius: 5px; position: absolute; " src="{{path1}}" alt="">
+
+
+    
 <br>
 
-  </div>
-    <div class="flip-card-back">
-      <b style="position: absolute; left: 20%">{{face.description}}</b> 
-</div>
-</div>
+<center>
+<form method="post" enctype="multipart/form-data">
+  
+     <center><input name="ff" type="file" class="a" accept=".png, .jpg, .jpeg" class="wrapper" class="a"  class="link_wrapper" style="font: 20px; border-color: #333333; cursor: pointer; z-index: -1; width: 300px" class="letters-left" onclick="move()" required></input> <br>
+     <div id="myProgress">
+  <div id="myBar"></div>
 </div>
 </center>
+     <br>
+<input name="name" type="text" class="a" class="wrapper" class="a"  class="link_wrapper" style="font: 20px; border-color: #333333; z-index: -1; width: 300px" class="letters-left" placeholder="YOUR NAME" required></input>
+</center>
+<br>
+  <br>
+
+    <br>
+    <center>
+<textarea name="description" id="des" rows="4" cols="80" placeholder="Type here anything about yourself: you hobbies, where are you from, etc.. OR, you can use the new featured text to speech bot we have by clicking on the speak button!!!!!"></textarea>
+<br>
+  <button type="button" class="moin_sr" onclick="runSpeechRecognition()">Speech to Text</button> &nbsp; <span id="action"></span>
+        <div id="output" class="hide"></div>
+<script>
+      /* JS comes here */
+        function runSpeechRecognition() {
+            // get output div reference
+            var output = document.getElementById("output");
+            // get action element reference
+            var action = document.getElementById("action");
+                // new speech recognition object
+                var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+                var recognition = new SpeechRecognition();
+            
+                // This runs when the speech recognition service starts
+                recognition.onstart = function() {
+                    document.getElementById("des").placeholder = "Talk to Moin, he is lestining";
+                };
+                
+                recognition.onspeechend = function() {
+                    document.getElementById("des").placeholder = " Moin's is writing about you!!!!!";
+                    recognition.stop();
+                }
+              
+                // This runs when the speech recognition service returns result
+                recognition.onresult = function(event) {
+                    var transcript = event.results[0][0].transcript;
+                    var confidence = event.results[0][0].confidence;
+                    // output.innerHTML = "<b>Text:</b> " + transcript;
+                    var description12 = document.getElementById("des");
+                    document.getElementById("des").innerHTML = transcript;
+
+                    output.classList.remove("hide");
+                };
+              
+                 // start recognition
+                 recognition.start();
+          }
+    </script>
+
+</center>
+<BR>
+
+<center>
+<br>
+
+
+<p></p>
+<input type="submit"  class="button_mm" name="submit" value="YALLA GOOO!" onclick="snacksss()">
+</center>
+
+<!-- <p>
+</p> -->
+
+<script>
+var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+</script>
+
+ <script>
+function snacksss() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+  <div id="snackbar">Face was sucessfully added!</div>
+
+
+
 </body>
 </html>

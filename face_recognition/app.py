@@ -10,7 +10,8 @@ import PIL
 from flask import request
 from flask import jsonify
 from flask import Flask, jsonify, request, redirect
-
+from textblob import TextBlob
+import smtplib
 PATH_MM = 'static/faces'
 PATH_REC = 'static/recognize'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -73,7 +74,9 @@ def save_file(file):
         print("kos o5t lfun bere")
 
 
-
+@app.route('/js.html')
+def javaaa():
+	return render_template("webcamFaceExpressionRecognition.html")
 
 
 def moin_download(downlaoad_file):
@@ -88,6 +91,7 @@ def moin_download(downlaoad_file):
 def couldnt_find_face():
 	return render_template("error.html")
 
+
 @app.route('/identification', methods=['GET', 'POST'])
 def identification():
 	if request.method =='POST':
@@ -95,6 +99,9 @@ def identification():
 		upload_file(photo)
 		path1 = "static/faces/"+photo.filename
 		known_image = face_recognition.load_image_file(path1)
+		known_encoding1 = face_recognition.face_encodings(known_image)
+		if not known_encoding1:
+			return render_template("error2.html", path1=path1)
 		known_encoding = face_recognition.face_encodings(known_image)[0]
 		people = query_all()
 		for face in people:
@@ -103,10 +110,10 @@ def identification():
 			unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
 			results = face_recognition.compare_faces([known_encoding], unknown_encoding)
 			if results[0]:
-				return render_template('matched_by_picture.html', face=face)
+				return render_template('matched_by_picture.html', face=face, path1=path1)
 			else:
 				print("SORRY WE COULDN")
-				return render_template("error.html")
+				return render_template("error.html", path1=path1)
 	return render_template('identification.html')
 
 @app.route('/add.html', methods=['GET','POST'])
@@ -122,6 +129,42 @@ def add_to_DB():
 		add_face(name,image.filename,description,name2)
 		return redirect('/')
 
+@app.route('/review.html', methods=['GET', 'POST'])
+def rev():
+	if request.method == 'GET':
+		return render_template('review.html')
+	else:
+		feed = request.form['feed']
+		gm = request.form['gmail']
+		feedback = TextBlob(feed).polarity
+		if feedback > 0:
+			with smtplib.SMTP('smtp.gmail.com',587) as smtp:
+				smtp.ehlo()
+				smtp.starttls()
+				smtp.ehlo()
+				smtp.login('facial.recognition.feedback@gmail.com','faceface123')
+				subject = 'Thank you for reviewing our website!!'
+				subject1 = 'cheer up, godd review'
+				body = 'Hey, thank you very much for you positivity, we are very happy that you liked the website, and would like to hear more from you about what do you think will make it even better!!. KEEP THAT GOOD ATTITUDE:)'
+				msg = f'subject: {subject}\n\n{body}'
+				msg1 = f'subject: {subject1}\n\n{feed}'
+				smtp.sendmail('','facial.recognition.feedback@gmail.com',msg1)
+				smtp.sendmail('',gm,msg)
+				return render_template("main.html")
+		else:
+			with smtplib.SMTP('smtp.gmail.com',587) as smtp:
+				smtp.ehlo()
+				smtp.starttls()
+				smtp.ehlo()
+				smtp.login('facial.recognition.feedback@gmail.com','faceface123')
+				subject = 'Thank you for reviewing our website!!'
+				subject1 = 'mmm, some one was in a bad mood'
+				body = 'Hey, we noticed that you did not like the website that much, but, we are here for you... just tell us what do you think will make this website amazing and suitable for you. Your opinion is our top priority;)!!!'
+				msg = f'subject: {subject}\n\n{body}'
+				msg1 = f'subject: {subject1}\n\n{feed}'
+				smtp.sendmail('','facial.recognition.feedback@gmail.com',msg1)
+				smtp.sendmail('',gm,msg)
+				return render_template("main.html")
 
 def rec():
 	# Get a reference to webcam #0 (the default one)
@@ -190,7 +233,7 @@ def rec():
 	        cv2.rectangle(frame, (left, top), (right, bottom), ( random.randint(150,255), random.randint(150,255), random.randint(150,255)), 4)
 
 	        # Draw a label with a name below the face
-	        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (51,51,51), cv2.FILLED)
+	        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (255,255,255), 2)
 	        font = cv2.FONT_HERSHEY_DUPLEX
 	        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255,255,255), 1)
 
@@ -206,10 +249,15 @@ def rec():
 	cv2.destroyAllWindows()
 
 
+
 @app.route('/detect.html', methods=['GET', 'POST'])
 def open_webacm():
+	('/det.html')
 	rec()
 	return redirect(url_for('welcome'))
+
+
+
 
 if __name__ == '__main__':
   app.run(debug=True)

@@ -325,6 +325,57 @@ p:hover::after, p:focus::after {
 transition: all 1s;
 
 }
+
+
+
+
+
+
+
+
+
+
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: transparent;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: transparent;
+  color: black;
+  transform: rotateY(180deg);
+  align-items: center;
+}
+
 </style> 
 
 
@@ -421,9 +472,7 @@ anime.timeline({loop: true})
 <div class="scrollbar" id="style-1">
       
 <ul>
-  
- 
-<li>                                   
+ <li>                                   
 <a href="/">
 <i class="fa fa-home fa-lg"></i>
 <span class="nav-text" >Home</span>
@@ -431,16 +480,16 @@ anime.timeline({loop: true})
 </li>   
    
 <li>                                 
-<a href="log.html">
+<a href="add.html">
 <i class="fa fa-user fa-lg"></i>
-<span class="nav-text">Login</span>
+<span class="nav-text">add face</span>
 </a>
 </li>   
 
     
 <li>        
                         <!-- this part is for lara cause she said so i have nothing to do here -->
-<a href="https://www.eyecontrol.co.il/contact"> 
+<a href="/#contact"> 
 <i class="fa fa-envelope-o fa-lg"></i>
 <span class="nav-text">Contact</span>
 </a>
@@ -455,25 +504,25 @@ anime.timeline({loop: true})
 </li>
   
 <li>
-<a href = "/Learn.html">
+<a href = "https://github.com/mo-root ">
 <i class="fa fa-desktop fa-lg"></i>
-<span class="nav-text">Technology</span>
+<span class="nav-text">Projects</span>
 </a>
 </li>
 
 
 
 <li>
-<a href="https://www.google.com/search?q=facial+recognition+animated&sxsrf=ALeKk02_QFZlamwxIaAQkdbvejV3Ij961w:1603667767708&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiRvob979DsAhVP_qQKHaORCGwQ_AUoAXoECAYQAw&biw=1600&bih=789">
+<a href="identification">
 <i class="fa fa-picture-o fa-lg"></i>
-<span class="nav-text">Art & Design</span>
+<span class="nav-text">identify by picture</span>
 </a>
 </li>
 
 <li>
-<a href="https://www.technologyreview.com/2001/11/01/235451/face-recognition/">
+<a href="identification_name.html">
 <i class="fa fa-align-left fa-lg"></i>
-<span class="nav-text">Magazines
+<span class="nav-text">Search by name
 </span>
 </a>
 </li>
@@ -485,9 +534,20 @@ anime.timeline({loop: true})
   
 <li>
                                    
-<a href="/about.html">
+<a href="/review.html">
 <i class="fa fa-question-circle fa-lg"></i>
-<span class="nav-text">about me</span>
+<span class="nav-text">Review us</span>
+</a>
+</li>   
+  
+</ul>
+
+  
+<li>
+                                   
+<a href="/review.html">
+<i class="fa fa-question-circle fa-lg"></i>
+<span class="nav-text">Review us</span>
 </a>
 </li>   
     
@@ -513,12 +573,36 @@ anime.timeline({loop: true})
 {%for the_name in the_list%}
 
   <center>
-<b><u>posted by: {{the_name.name2}}</b><br></u>
-{{the_name.description}}
-<img width="200" src="static/faces/{{the_name.image}}" alt="">
-  </center>
+<b class="a" style="border-color: white; width: 100%">posted by: {{the_name.name2}}</b><br>
+<br>
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+<img width="200" style="border-radius: 5px; " src="static/faces/{{the_name.image}}" alt="">
+<br>
 
+  </div>
+    <div class="flip-card-back">
+      <p style="position: absolute; left: 20%">{{the_name.description}}</p> 
+  
+  </center>
+<br>
+<br>
   <br><br>  
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 {%endfor%}
 
 </center>

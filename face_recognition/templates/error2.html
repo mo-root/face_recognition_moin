@@ -65,7 +65,6 @@
   border: 2px solid #00004d;
   transition: all .35s;
   font-size: 18px;
-  border-color: #00B6B3;
 
 
 }
@@ -126,7 +125,6 @@
 .a:hover{
   width: 250px;
   border: 3px solid #00B6B3;
-  border-color: #00B6B3;
   background: white;
   color: #000;
   font-size: 14px;
@@ -327,50 +325,6 @@ p:hover::after, p:focus::after {
 transition: all 1s;
 
 }
-
-
-
-
-.flip-card {
-  background-color: transparent;
-  width: 200px;
-  height: 200px;
-  perspective: 1000px;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  text-align: center;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.flip-card-front {
-  background-color: transparent;
-  color: black;
-}
-
-.flip-card-back {
-  background-color: transparent;
-  color: black;
-  transform: rotateY(180deg);
-  align-items: center;
-}
 </style> 
 
 
@@ -391,9 +345,9 @@ transition: all 1s;
 <h1 class="ml5">
   <span class="text-wrapper">
     <span class="line line1"></span>
-    <span class="letters letters-left">This is</span>
+    <span class="letters letters-left">we do not think</span>
 
-    <span class="letters letters-right">{{face.name}}</span>
+    <span class="letters letters-right">there is a face in this picture</span>
     <span class="line line2"></span>
   </span>
 </h1>
@@ -411,7 +365,7 @@ anime.timeline({loop: true})
     duration: 1000
   }).add({
     targets: '.ml5 .line',
-    duration: 900,
+    duration: 1000,
     easing: "easeOutExpo",
     translateY: (el, i) => (-0.625 + 0.625*2*i) + "em"
   }).add({
@@ -419,28 +373,28 @@ anime.timeline({loop: true})
     opacity: [0,1],
     scaleY: [0.5, 1],
     easing: "easeOutExpo",
-    duration: 900,
+    duration: 1000,
     offset: '-=600'
   }).add({
     targets: '.ml5 .letters-left',
     opacity: [0,1],
     translateX: ["0.5em", 0],
     easing: "easeOutExpo",
-    duration: 1200,
+    duration: 1000,
     offset: '-=300'
   }).add({
     targets: '.ml5 .letters-right',
     opacity: [0,1],
     translateX: ["-0.5em", 0],
     easing: "easeOutExpo",
-    duration: 1200,
+    duration: 1000,
     offset: '-=600'
   }).add({
     targets: '.ml5',
     opacity: 0,
     duration: 1000,
     easing: "easeOutExpo",
-    delay: 10000
+    delay: 100000
   });
 </script>
 
@@ -467,7 +421,6 @@ anime.timeline({loop: true})
 <div class="scrollbar" id="style-1">
       
 <ul>
-  
  <li>                                   
 <a href="/">
 <i class="fa fa-home fa-lg"></i>
@@ -535,6 +488,7 @@ anime.timeline({loop: true})
 <span class="nav-text">Review us</span>
 </a>
 </li>   
+  
 
 </ul>
         </nav>
@@ -547,29 +501,20 @@ anime.timeline({loop: true})
 <b style="position: ">
 </div>
        
+        
+
         </div>
+
 <br>
 <br>
 <br>
 <br>
 <br>
 <br>
-<center>
-<b class="a" style="border-color: white; width: 100%">posted by: {{face.name2}}</b><br>
-<br>
-<div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-<img width="200" style="border-radius: 5px; " src="static/faces/{{face.image}}" alt="">
-<img width="200" style="border-radius: 5px; position: absolute; " src="{{path1}}" alt="">
 <br>
 
-  </div>
-    <div class="flip-card-back">
-      <b style="position: absolute; left: 20%">{{face.description}}</b> 
-</div>
-</div>
-</div>
+<center>
+<img src="{{path1}}">
 </center>
 </body>
 </html>

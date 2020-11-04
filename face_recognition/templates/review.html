@@ -60,12 +60,11 @@
   background: #232323;
   text-align: center;
   color: #fff;
-  text-transform: uppercase;
+
   letter-spacing: 1px;
   border: 2px solid #00004d;
   transition: all .35s;
   font-size: 18px;
-  border-color: #00B6B3;
 
 
 }
@@ -126,7 +125,6 @@
 .a:hover{
   width: 250px;
   border: 3px solid #00B6B3;
-  border-color: #00B6B3;
   background: white;
   color: #000;
   font-size: 14px;
@@ -217,6 +215,69 @@
   animation: shine 2s linear infinite;
 }*/
 
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark13 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
 @keyframes shine {
   from { -webkit-mask-position: 150%; }
   to { -webkit-mask-position: -50%; }
@@ -274,7 +335,7 @@ p::after {
   border: 6px solid #00FFCB;
   position: absolute;
   z-index: -1;
-  top:75%;
+  top:80%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: ring 1.5s infinite;
@@ -296,6 +357,12 @@ p:hover::after, p:focus::after {
     height: 300px;
     opacity: 0;
   }
+}
+
+.reposition{
+  position: absolute;
+  top: 80%;
+  right: 80%;
 }
 
 
@@ -331,46 +398,89 @@ transition: all 1s;
 
 
 
-.flip-card {
-  background-color: transparent;
-  width: 200px;
-  height: 200px;
-  perspective: 1000px;
+#g-recaptcha-response {
+    display: block !important;
+    position: absolute;
+    margin: -78px 0 0 0 !important;
+    width: 302px !important;
+    height: 76px !important;
+    z-index: -999999;
+    opacity: 0;
 }
 
-.flip-card-inner {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  text-align: center;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
 
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.flip-card-front {
-  background-color: transparent;
+.typewriter {
   color: black;
+  font-family: monospace;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .2em solid black; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .20em; /* Adjust as needed */
+  animation: 
+    typing 1s steps(6, end),
+    blink-caret .5s step-end infinite;
 }
 
-.flip-card-back {
-  background-color: transparent;
-  color: black;
-  transform: rotateY(180deg);
-  align-items: center;
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 30% }
 }
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #333333 }
+}
+
+
+
+
+
+
+
+.bottom{
+  position:absolute;
+  font-size:12px;
+  bottom:0;
+  right:0;
+  left:0;
+  color:rgba(#000, .4);
+  a{color:rgba(#000, .4);
+    transition:.27s;
+    &:hover{
+      color:#C25068;
+    }
+  }
+  
+}
+svg{
+  max-width:600px;
+  margin-top:40px;
+  box-shadow:0px 5px 22px rgba(black, .27)
+}
+svg .gooey{
+  filter:url('#goo');
+}
+svg .drop, svg .dropTop, svg .drops{
+  opacity:0;
+}
+svg .toggler{cursor:pointer;}
+#boom{
+  position:absolute;
+  top:-1000px;
+  left:-1000px;
+  opacity:0;
+  
+  & + div:before{content:"unchecked";
+    color:rgba(#000, .4);}
+  &:checked + div:before{content:'checked'}
+}
+
+
+
+
 </style> 
 
 
@@ -391,9 +501,9 @@ transition: all 1s;
 <h1 class="ml5">
   <span class="text-wrapper">
     <span class="line line1"></span>
-    <span class="letters letters-left">This is</span>
+    <span class="letters letters-left">What do you</span>
 
-    <span class="letters letters-right">{{face.name}}</span>
+    <span class="letters letters-right">think of the website?</span>
     <span class="line line2"></span>
   </span>
 </h1>
@@ -408,7 +518,7 @@ anime.timeline({loop: true})
     opacity: [0.5,1],
     scaleX: [0, 1],
     easing: "easeInOutExpo",
-    duration: 1000
+    duration: 900
   }).add({
     targets: '.ml5 .line',
     duration: 900,
@@ -426,14 +536,14 @@ anime.timeline({loop: true})
     opacity: [0,1],
     translateX: ["0.5em", 0],
     easing: "easeOutExpo",
-    duration: 1200,
+    duration: 800,
     offset: '-=300'
   }).add({
     targets: '.ml5 .letters-right',
     opacity: [0,1],
     translateX: ["-0.5em", 0],
     easing: "easeOutExpo",
-    duration: 1200,
+    duration: 700,
     offset: '-=600'
   }).add({
     targets: '.ml5',
@@ -443,8 +553,6 @@ anime.timeline({loop: true})
     delay: 10000
   });
 </script>
-
-
 
 
 
@@ -535,6 +643,7 @@ anime.timeline({loop: true})
 <span class="nav-text">Review us</span>
 </a>
 </li>   
+  
 
 </ul>
         </nav>
@@ -548,28 +657,209 @@ anime.timeline({loop: true})
 </div>
        
         </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<center>
-<b class="a" style="border-color: white; width: 100%">posted by: {{face.name2}}</b><br>
-<br>
-<div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-<img width="200" style="border-radius: 5px; " src="static/faces/{{face.image}}" alt="">
-<img width="200" style="border-radius: 5px; position: absolute; " src="{{path1}}" alt="">
+
+
+    
 <br>
 
-  </div>
-    <div class="flip-card-back">
-      <b style="position: absolute; left: 20%">{{face.description}}</b> 
-</div>
-</div>
-</div>
+<center>
+<form method="post" enctype="multipart/form-data">
+  
+     <center>
+      <b>your email:</b>
+<input name="gmail" type="email" class="a" class="wrapper" class="a"  class="link_wrapper" style="font: 20px; border-color: #333333; z-index: -1; width: 300px" class="letters-left" placeholder="example@gmail.com" required id="the_first"></input>
+<br>
+<textarea name="feed" id="des" rows="6" cols="100" placeholder="Type here what do you think of our website, say whatever you like, we will recieve it, read it immediatly and we will, for sure, work on it in order to provide you the best facial recognition website ever!!!" required></textarea>
+<br>
+
+  <button type="button"  class="moin_sr" onclick="runSpeechRecognition()"><b id="sts">Speech to Text</b></button>        <button type="button" class="moin_sr" onclick="speak()">read my bio</button> 
+
+<script>
+
+
+      /* JS comes here */
+        function runSpeechRecognition() {
+            // get output div reference            
+            var output = document.getElementById("output");
+            // get action element reference
+            var action = document.getElementById("action");
+                // new speech recognition object
+                var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+                var recognition = new SpeechRecognition();
+            
+                // This runs when the speech recognition service starts
+                recognition.onstart = function() {
+                    document.getElementById("des").placeholder = "Talk to Moin, he is lestining";
+                };
+                
+                recognition.onspeechend = function() {
+                    document.getElementById("des").placeholder = " Moin's is writing about you!!!!!";
+                    recognition.stop();
+                }
+              
+                // This runs when the speech recognition service returns result
+                recognition.onresult = function(event) {
+                    var transcript = event.results[0][0].transcript;
+                    var confidence = event.results[0][0].confidence;
+                    // output.innerHTML = "<b>Text:</b> " + transcript;
+                    var description12 = document.getElementById("des");
+                    document.getElementById("des").innerHTML = transcript;
+
+                    output.classList.remove("hide");
+                };
+              
+                 // start recognition
+                 recognition.start();
+          }
+    </script>
+<script type="text/javascript">
+  function verify(){
+
+  if (document.getElementById("the_first").value != document.getElementById("the_second").value) {
+    alert("ASDASDAS");
+  }}
+</script>
+<script type="text/javascript">
+  function speak(){
+
+  if(document.getElementById("des") && document.getElementById("des").value)
+  {
+  var msg = new SpeechSynthesisUtterance();
+  msg.text = document.getElementById("des").value ;
+  window.speechSynthesis.speak(msg);
+}
+ else{
+  var msg = new SpeechSynthesisUtterance();
+  msg.text = "Type something for us to read";
+  window.speechSynthesis.speak(msg);
+}}
+
+
+</script>
+
 </center>
+<BR>
+<center>
+<script type="text/javascript">
+  window.onload = function() {
+    var $recaptcha = document.querySelector('#g-recaptcha-response');
+
+    if($recaptcha) {
+        $recaptcha.setAttribute("required", "required");
+    }
+};
+</script>
+
+<script type="text/javascript">
+  var check = new TimelineMax({paused:true});
+var uncheck = new TimelineMax({paused:true});
+
+check
+  .set('.ring', {opacity:1})
+  .set('.drops', {opacity:0})
+  .set('.ring0', {opacity:0})
+  .set('.drop', {opacity:0, y:-32, scale:.4, x:0, transformOrigin:"50%, 0%"})
+  .set('.ring', {transformOrigin:"50%, 50%"})
+  .set('.dropTop', {opacity:1,scale:.2, transformOrigin:"50%, 0%"})
+  .add('sync')
+  .to('.ring', .17, { scaleY:.95}, 'sync')
+   .to('.dropTop', .1, { scale:1, y:.5, ease:Power0.easeNone}, 'sync')
+  .to('.dropTop', .1, { scale:.3, ease:Power0.easeNone}, 'sync +=.08')
+  .to('.dropTop', .08, {transformOrigin:"50%, 40%", scale:0, ease:Power0.easeNone}, 'sync +=.181')
+  .set('.drop',  { opacity:1, ease:Power0.easeNone}, 'sync')
+  .to('.drop', .17, { y:0, ease:Power1.easeIn}, 'sync')
+  .to('.drop', .08, {scale:.9, ease:Power0.easeNone}, 'sync +=.02')
+  .to('.ring', 2, {transformOrigin:"50%, 50%", scaleY:1, ease:Elastic.easeOut.config(.8, .1)}, 'sync +=.14')
+  .to('.drop', 1.8, {transformOrigin:"50%, 10%", scale:1, ease:Elastic.easeOut.config(.8, .14)}, 'sync +=.14')
+
+
+uncheck
+  .set('.ring0', {opacity:1})
+  .set('.drop', {opacity:0}) 
+  .set('.ring', {opacity:0})
+  .set('.drops', {opacity:1}) 
+  .set('.drop0', {rotation:'40deg',transformOrigin:"50%, 50%"})
+  .set('.drop1', {rotation:'112deg',transformOrigin:"50%, 50%"})
+  .set('.drop2', {rotation:'175deg',transformOrigin:"50%, 50%"})
+  .set('.drop3', {rotation:'-110deg',transformOrigin:"50%, 50%"})
+  .set('.drop4', {rotation:'-35deg',transformOrigin:"50%, 50%"}) 
+  .add('uncheck')
+  .to('.drops', .2, {transformOrigin:"50%, 50%", scaleX:.5, scaleY:.3,})
+  .staggerTo('.drops', .2, { cycle:{
+    x:[45, 59, 14, -62, -35],
+    y:[-46, 29, 62, 15, -55],    
+  }}, '0.0184', 'uncheck+=.1')
+  .to('.ring0', .2, {transformOrigin:"50%, 50%", scale:1.05}, 'uncheck+=.1')
+  .add('last')
+  .to('.ring0', 2, {transformOrigin:"50%, 50%", scale:1, ease:Elastic.easeOut.config(.8, .1)}, 'last')
+  .to('.drops', .2, {scaleY:.1, scaleX:.3},'last+=0');
+
+
+check.timeScale(1.27);
+uncheck.timeScale(1.14);
+
+$('.toggler').click(function(){
+  if (!$('#boom').is(':checked')){
+    check.play(0);
+    $('#boom').prop('checked', true);
+    
+  } else{
+    uncheck.play(0);
+    $('#boom').prop('checked', false);
+  }
+});
+
+</script>
+
+
+<br>
+<br>  
+<script type="text/javascript">
+  function ale(){
+    alert("By clicking okay you are taking full responsibility on this action, you are violating his/her privacy and any complaint from this person might get you into troubles.")
+  }
+</script>
+
+
+
+
+<input type="submit"  class="button_mm" name="submit" value="YALLA GOOO!" onclick="snacksss()" >
+</center>
+
+<!-- <p>
+</p> -->
+
+<script>
+var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+</script>
+
+ <script>
+function snacksss() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+  <div id="snackbar">Adding your face...</div>
+
+
+
 </body>
 </html>

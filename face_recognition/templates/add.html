@@ -585,16 +585,16 @@ anime.timeline({loop: true})
 </li>   
    
 <li>                                 
-<a href="log.html">
+<a href="add.html">
 <i class="fa fa-user fa-lg"></i>
-<span class="nav-text">Login</span>
+<span class="nav-text">add face</span>
 </a>
 </li>   
 
     
 <li>        
                         <!-- this part is for lara cause she said so i have nothing to do here -->
-<a href="https://www.eyecontrol.co.il/contact"> 
+<a href="/#contact"> 
 <i class="fa fa-envelope-o fa-lg"></i>
 <span class="nav-text">Contact</span>
 </a>
@@ -609,25 +609,25 @@ anime.timeline({loop: true})
 </li>
   
 <li>
-<a href = "/Learn.html">
+<a href = "https://github.com/mo-root ">
 <i class="fa fa-desktop fa-lg"></i>
-<span class="nav-text">Technology</span>
+<span class="nav-text">Projects</span>
 </a>
 </li>
 
 
 
 <li>
-<a href="https://www.google.com/search?q=facial+recognition+animated&sxsrf=ALeKk02_QFZlamwxIaAQkdbvejV3Ij961w:1603667767708&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiRvob979DsAhVP_qQKHaORCGwQ_AUoAXoECAYQAw&biw=1600&bih=789">
+<a href="identification">
 <i class="fa fa-picture-o fa-lg"></i>
-<span class="nav-text">Art & Design</span>
+<span class="nav-text">identify by picture</span>
 </a>
 </li>
 
 <li>
-<a href="https://www.technologyreview.com/2001/11/01/235451/face-recognition/">
+<a href="identification_name.html">
 <i class="fa fa-align-left fa-lg"></i>
-<span class="nav-text">Magazines
+<span class="nav-text">Search by name
 </span>
 </a>
 </li>
@@ -639,9 +639,9 @@ anime.timeline({loop: true})
   
 <li>
                                    
-<a href="/about.html">
+<a href="/review.html">
 <i class="fa fa-question-circle fa-lg"></i>
-<span class="nav-text">about me</span>
+<span class="nav-text">Review us</span>
 </a>
 </li>   
     
@@ -682,15 +682,19 @@ anime.timeline({loop: true})
     <center>
 <textarea name="description" id="des" rows="4" cols="80" placeholder="Type here anything about yourself: you hobbies, where are you from, etc.. OR, you can use the new featured text to speech bot we have by clicking on the speak button!!!!!"></textarea>
 <br>
-  <button type="button" class="moin_sr" onclick="runSpeechRecognition()">Speech to Text</button>        <button type="button" class="moin_sr" onclick="speak()">read my bio</button> 
+  <button type="button"  class="moin_sr" onclick="runSpeechRecognition()"><b id="sts">Speech to Text</b></button>        <button type="button" class="moin_sr" onclick="speak()">read my bio</button> 
+     
+  
 &nbsp; <span id="action"></span>
         <div id="output" class="hide"></div>
       
  
 <script>
+
+
       /* JS comes here */
         function runSpeechRecognition() {
-            // get output div reference
+            // get output div reference            
             var output = document.getElementById("output");
             // get action element reference
             var action = document.getElementById("action");
@@ -843,7 +847,15 @@ $('.toggler').click(function(){
 
 
 <p></p>
+<script type="text/javascript">
+  window.onload = function() {
+    var $recaptcha = document.querySelector('#g-recaptcha-response');
 
+    if($recaptcha) {
+        $recaptcha.setAttribute("required", "required");
+    }
+};
+</script>
 
 <input type="submit"  class="button_mm" name="submit" value="YALLA GOOO!" onclick="snacksss()" >
 </center>
