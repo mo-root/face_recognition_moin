@@ -5,5 +5,5 @@ Install all the libraries which are written in the requirement file, an option t
 then open you command prompt, change the directory to where the app.py is located by typing cd /.../.../.../face_recognition (you can select the app.py and hit properties, then copy the location and paste it to the cmd)
 and from now on type python app.py to run the app and open the link given in the command prompt in your website.
 ##if you have a compiler you can also open the python file and run it wherever you want...
-############################################################################################################################################################
+#
 the project is still in progress and it's not finished yet, in one week from now I will be uploading the full version.
