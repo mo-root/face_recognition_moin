@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript" src="{{url_for('static', filename='js/face-api.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/commons.js')}}"></script>
-  <script type="text/javascript" src="{{url_for('static', filename='js/faceDetectionControls.js')}}"></script>
-  <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
-
-
+  <script src="face-api.js"></script>
+  <script src="js/commons.js"></script>
+  <script src="js/faceDetectionControls.js"></script>
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -19,7 +17,6 @@
       <div class="indeterminate"></div>
     </div>
     <div style="position: relative" class="margin">
-
       <video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
       <canvas id="overlay" />
     </div>
@@ -35,14 +32,7 @@
         <label>Select Face Detector</label>
       </div>
       <!-- face_detector_selection_control -->
-<script type="text/javascript">
-  
-window.onload = (event) => {
-  onPlay(this)
-  
-};
 
-</script>
       <!-- check boxes -->
       <div class="row" style="width: 220px;">
         <input type="checkbox" id="hideBoundingBoxesCheckbox" onchange="onChangeHideBoundingBoxes(event)" />
@@ -151,29 +141,28 @@ window.onload = (event) => {
 
       const ts = Date.now()
 
-      const result = await faceapi.detectSingleFace(videoEl, options).withFaceExpressions()
+      const result = await faceapi.detectSingleFace(videoEl, options).withFaceLandmarks()
 
       updateTimeStats(Date.now() - ts)
 
       if (result) {
         const canvas = $('#overlay').get(0)
         const dims = faceapi.matchDimensions(canvas, videoEl, true)
-
         const resizedResult = faceapi.resizeResults(result, dims)
-        const minConfidence = 0.05
+
         if (withBoxes) {
           faceapi.draw.drawDetections(canvas, resizedResult)
         }
-        faceapi.draw.drawFaceExpressions(canvas, resizedResult, minConfidence)
+        faceapi.draw.drawFaceLandmarks(canvas, resizedResult)
       }
 
       setTimeout(() => onPlay())
     }
 
     async function run() {
-      // load face detection and face expression recognition models
+      // load face detection and face landmark models
       await changeFaceDetector(TINY_FACE_DETECTOR)
-      await faceapi.loadFaceExpressionModel('/')
+      await faceapi.loadFaceLandmarkModel('/')
       changeInputSize(224)
 
       // try to access users webcam and stream the images
@@ -186,6 +175,7 @@ window.onload = (event) => {
     function updateResults() {}
 
     $(document).ready(function() {
+      renderNavBar('#navbar', 'webcam_face_landmark_detection')
       initFaceDetectionControls()
       run()
     })

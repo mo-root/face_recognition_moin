@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript" src="{{url_for('static', filename='js/face-api.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/commons.js')}}"></script>
-  <script type="text/javascript" src="{{url_for('static', filename='js/faceDetectionControls.js')}}"></script>
-  <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
-
-
+  <script src="face-api.js"></script>
+  <script src="js/commons.js"></script>
+  <script src="js/faceDetectionControls.js"></script>
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -19,7 +17,6 @@
       <div class="indeterminate"></div>
     </div>
     <div style="position: relative" class="margin">
-
       <video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
       <canvas id="overlay" />
     </div>
@@ -35,14 +32,7 @@
         <label>Select Face Detector</label>
       </div>
       <!-- face_detector_selection_control -->
-<script type="text/javascript">
-  
-window.onload = (event) => {
-  onPlay(this)
-  
-};
 
-</script>
       <!-- check boxes -->
       <div class="row" style="width: 220px;">
         <input type="checkbox" id="hideBoundingBoxesCheckbox" onchange="onChangeHideBoundingBoxes(event)" />
@@ -186,6 +176,7 @@ window.onload = (event) => {
     function updateResults() {}
 
     $(document).ready(function() {
+      renderNavBar('#navbar', 'webcam_face_expression_recognition')
       initFaceDetectionControls()
       run()
     })

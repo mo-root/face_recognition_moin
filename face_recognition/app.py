@@ -12,6 +12,7 @@ from flask import jsonify
 from flask import Flask, jsonify, request, redirect
 from textblob import TextBlob
 import smtplib
+import time
 PATH_MM = 'static/faces'
 PATH_REC = 'static/recognize'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -25,6 +26,10 @@ app.config['PATH_REC'] = PATH_REC
 @app.route('/')
 def welcome():
 	return render_template("main.html")
+
+@app.route('/donate.html')
+def dndn():
+	return render_template("donate.html")
 
 
 @app.route("/ip", methods=["GET"])
@@ -74,10 +79,20 @@ def save_file(file):
         print("kos o5t lfun bere")
 
 
-@app.route('/js.html')
-def javaaa():
-	return render_template("webcamFaceExpressionRecognition.html")
+# def js_fc():
+# 	path3 = "/Users"
+# 	os.path.join(path3, "moinm/OneDrive/Desktop/face-api.js/examples/", "examples-browser", "")
+# 	os.system("npm start")
 
+# @app.route('/js.html')
+# def javaaa():
+# 	js_fc()
+# 	time.sleep(1)
+# 	return redirect("http://localhost:3000/webcam_face_expression_recognition")
+
+@app.route('/js.html')
+def javaaa2():
+	return render_template('webcamFaceExpressionRecognition.html')
 
 def moin_download(downlaoad_file):
 	filename1 = downlaoad_file.filename
