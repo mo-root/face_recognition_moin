@@ -19,8 +19,13 @@ This is a step-by-step video made by me on how to use the website and how does t
 
 # How to run:
   •	Download the project
+  
   •	Go to Face_recognition
+  
   •	Open the terminal/command prompt within the directory you are currently in
+  
   •	Type python app.py
+  
   •	Hit enter
+  
   •	Have fun
