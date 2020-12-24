@@ -19,7 +19,7 @@ This is a step-by-step video on how to use the website and how does the website 
   11.	time
 
 # How to run:
-  •	Download the project
+  •	Download the project (you can type "git clone https://github.com/mo-root/face_recognition_moin.git")
   
   •	Go to Face_recognition
   
