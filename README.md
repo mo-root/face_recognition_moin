@@ -1,4 +1,5 @@
 # face_recognition_moin
+Facial recognition website made by M.Arz, started as a personal project and been submitted as a Y2-cs-prjoect for MEET (the middle east entrepreneurs of tomorrow)
 # How to use?
 I will publish this website soon, but till now, you must have python, Imagemagick, Dlib, and some additional libraries.
 https://drive.google.com/file/d/1_k8eVIDyspc8B4u-OR9OC2q7_4cCHqVS/view?usp=sharing
