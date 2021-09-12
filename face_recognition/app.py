@@ -76,7 +76,7 @@ def save_file(file):
 #            filename = secure_filename(file.filename)
         filename = file.filename
         image.save(r"C:\Users\moinm\OneDrive\Desktop\face_recognition\static\faces", filename)
-        print("kos o5t lfun bere")
+        print("kan fe msbe hon wbs b7b h2ol msh mst3'ne 3nha k o lfun b e")
 
 
 # def js_fc():
